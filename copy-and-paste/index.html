@@ -22,6 +22,8 @@
 
       moverBtn.addEventListener("click", moveText);
       copyBtn.addEventListener("click", copyText);
+      finalTxt.addEventListener("click", selectAll);
+      copyTxt.addEventListener("click", selectAll);
 
       function copyText() {
         let temp = copyTxt.value;
@@ -42,6 +44,12 @@
       function moveText() {
         let temp = copyTxt.value;
         finalTxt.value = temp;
+      }
+
+      function selectAll() {
+        this.select(); // Select all of the text value inside the element
+        document.execCommand("copy"); // Copy value of element into the clipboard
+        // https://stackoverflow.com/questions/6969403/why-is-document-execcommandpaste-not-working-in-google-chrome
       }
     </script>
   </body>
