@@ -5,32 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      span {
+      td span {
         font-size: 0.8em;
         color: red;
         padding: 5px;
         cursor: pointer;
       }
+      td:first-child {
+        width: 250px;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body>
+    <div class="output"></div>
     <input type="text" name="" id="addItem" />
     <input type="button" value="Add Item" id="addNew" />
-    <div class="output"></div>
     <script>
       let myList = ["bannanas", "milk", "apples", "eggs", "cake"];
       const btnAdd = document.querySelector("#addNew");
       const output = document.querySelector(".output");
       const newItem = document.querySelector("#addItem");
       btnAdd.addEventListener("click", function () {
-        console.log("clicked");
+        // console.log("clicked");
         if (newItem.value) {
           myList.push(newItem.value);
         }
         build();
+        newItem.value = "";
       });
 
-      window.onload = build; // Invoke build function
+      document.addEventListener("DOMContentLoaded", build()); // Invoke build function
       function build() {
         output.innerHTML = "<h2>My List</h2>";
         console.log("ready");
@@ -46,11 +51,11 @@
           span1.innerText = "Delete";
           cell2.appendChild(span1);
           span1.addEventListener("click", function () {
-            console.log(myList[i]);
+            // console.log(myList[i]);
             //let temp = this.closest("tr").ind; Way to navigate using JS
             //console.log(temp);
             let itemOut = myList.splice(i, 1);
-            console.log(myList);
+            // console.log(myList);
             build(); //Rebuild the list
           });
 
@@ -72,14 +77,14 @@
               build();
             });
 
-            console.log(tempElement);
+            //  console.log(tempElement);
           });
           cell2.appendChild(span2);
           row.appendChild(cell2);
           tbl.appendChild(row);
         }
 
-        console.log(tbl);
+        //   console.log(tbl);
         output.appendChild(tbl);
       }
     </script>
