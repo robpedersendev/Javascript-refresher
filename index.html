@@ -16,5 +16,17 @@
     Color of Text
     <input type="color" name="bck" id="txt" value="######" />
     <img src="" alt="" srcset="" />
+    <script>
+      const sel = document.querySelector("select");
+      const inpAll = document.querySelectorAll("input");
+      sel.addEventListener("change", build);
+      inpAll.forEach(function (item) {
+        console.log(item);
+        item.addEventListener("change", build);
+      });
+      function build(e) {
+        console.log(e);
+      }
+    </script>
   </body>
 </html>
