@@ -20,10 +20,16 @@
     <script>
       let myList = ["bannanas", "milk", "apples", "eggs", "cake"];
       const btnAdd = document.querySelector("#addNew");
+      const output = document.querySelector(".output");
+      const newItem = document.querySelector("#addItem");
       btnAdd.addEventListener("click", function () {
         console.log("clicked");
+        if (newItem.value) {
+          myList.push(newItem.value);
+        }
+        build();
       });
-      const output = document.querySelector(".output");
+
       window.onload = build; // Invoke build function
       function build() {
         output.innerHTML = "<h2>My List</h2>";
