@@ -6,26 +6,50 @@
     <title>Document</title>
   </head>
   <body>
-    <select name="" id="">
-      <option value="150x150">small</option>
-      <option value="350x150">medium</option>
+    Image Size:
+    <select>
+      <option value="150x150">Small</option>
+      <option value="350x150">Medium</option>
       <option value="650x350">Large</option> </select
     ><br />
     Text on Image:
-    <input type="text" name="bck" id="bck" value="dddddddd" />
-    Color of Text
-    <input type="color" name="bck" id="txt" value="######" />
-    <img src="" alt="" srcset="" />
+    <input type="text" value="Hello" /><br />
+    Color of Background:
+    <input type="color" id="bck" value="#dddddd" /><br />
+    Color of Text:
+    <input type="color" id="txt" value="#ff0000" /><br />
+    <img src="" />
     <script>
       const sel = document.querySelector("select");
       const inpAll = document.querySelectorAll("input");
+      const myImg = document.querySelector("img");
+
       sel.addEventListener("change", build);
       inpAll.forEach(function (item) {
-        console.log(item);
+        //console.log(item);
         item.addEventListener("change", build);
       });
+
+      function clean(str) {
+        return str.replace("#", "");
+      }
       function build(e) {
-        console.log(e);
+        let i = {};
+        i.size = sel.value;
+        i.text = inpAll[0].value;
+        i.bgClr - clean(inpAll[1].value);
+        i.txtClr = clean(inpAll[2].value);
+        i.path =
+          "https://via.placeholder.com/" +
+          i.size +
+          "/" +
+          i.bgClr +
+          "/" +
+          i.txtClr +
+          "?text=" +
+          i.text;
+        myImg.src = i.path;
+        console.log(i);
       }
     </script>
   </body>
