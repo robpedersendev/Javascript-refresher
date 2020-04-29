@@ -9,6 +9,7 @@
         font-size: 0.8em;
         color: red;
         padding: 5px;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -25,6 +26,7 @@
       const output = document.querySelector(".output");
       window.onload = build; // Invoke build function
       function build() {
+        output.innerHTML = "<h2>My List</h2>";
         console.log("ready");
         const tbl = document.createElement("table");
         for (let i = 0; i < myList.length; i++) {
@@ -37,6 +39,14 @@
           const span1 = document.createElement("span");
           span1.innerText = "Delete";
           cell2.appendChild(span1);
+          span1.addEventListener("click", function () {
+            console.log(myList[i]);
+            //let temp = this.closest("tr").ind; Way to navigate using JS
+            //console.log(temp);
+            let itemOut = myList.splice(i, 1);
+            console.log(myList);
+            build(); //Rebuild the list
+          });
           const span2 = document.createElement("span");
           span2.innerText = "Edit";
           cell2.appendChild(span2);
