@@ -8,12 +8,13 @@
   <body>
     Image Size:
     <select>
-      <option value="150x150">Small</option>
+      <option value="150x50">Small</option>
       <option value="350x150">Medium</option>
-      <option value="650x350">Large</option> </select
-    ><br />
+      <option value="650x350">Large</option>
+    </select>
+    <br />
     Text on Image:
-    <input type="text" />
+    <input type="text" value="Echo" />
     <br />
     Color of Background:
     <input type="color" id="bck" value="#dddddd" />
@@ -22,23 +23,19 @@
     <input type="color" id="txt" value="#ff0000" />
     <br />
     <img src="" /><br />
-    <textarea rows="3" cols="50"></textarea>
+    <textarea rows="3" cols="50" aria-readonly="true"></textarea>
     <script>
       const sel = document.querySelector("select");
       const inpAll = document.querySelectorAll("input");
       const myImg = document.querySelector("img");
       const txtArea = document.querySelector("textarea");
-
       sel.addEventListener("change", build);
       inpAll.forEach(function (item) {
-        //console.log(item);
         item.addEventListener("change", build);
       });
-
       function clean(str) {
         return str.replace("#", "");
       }
-
       function spacers(str) {
         return str.split(" ").join("+");
       }
@@ -47,7 +44,7 @@
         let i = {};
         i.size = sel.value;
         i.text = spacers(inpAll[0].value);
-        i.bgClr - clean(inpAll[1].value);
+        i.bgClr = clean(inpAll[1].value);
         i.txtClr = clean(inpAll[2].value);
         i.path =
           "https://via.placeholder.com/" +
