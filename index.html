@@ -13,16 +13,21 @@
       <option value="650x350">Large</option> </select
     ><br />
     Text on Image:
-    <input type="text" value="Hello" /><br />
+    <input type="text" />
+    <br />
     Color of Background:
-    <input type="color" id="bck" value="#dddddd" /><br />
+    <input type="color" id="bck" value="#dddddd" />
+    <br />
     Color of Text:
-    <input type="color" id="txt" value="#ff0000" /><br />
-    <img src="" />
+    <input type="color" id="txt" value="#ff0000" />
+    <br />
+    <img src="" /><br />
+    <textarea rows="3" cols="50"></textarea>
     <script>
       const sel = document.querySelector("select");
       const inpAll = document.querySelectorAll("input");
       const myImg = document.querySelector("img");
+      const txtArea = document.querySelector("textarea");
 
       sel.addEventListener("change", build);
       inpAll.forEach(function (item) {
@@ -33,10 +38,15 @@
       function clean(str) {
         return str.replace("#", "");
       }
+
+      function spacers(str) {
+        return str.split(" ").join("+");
+      }
+
       function build(e) {
         let i = {};
         i.size = sel.value;
-        i.text = inpAll[0].value;
+        i.text = spacers(inpAll[0].value);
         i.bgClr - clean(inpAll[1].value);
         i.txtClr = clean(inpAll[2].value);
         i.path =
@@ -49,6 +59,10 @@
           "?text=" +
           i.text;
         myImg.src = i.path;
+        txtArea.value = i.path;
+        txtArea.select();
+        txtArea.focus();
+        document.execCommand("copy");
         console.log(i);
       }
     </script>
